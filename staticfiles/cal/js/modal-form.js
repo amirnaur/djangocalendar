@@ -76,7 +76,7 @@ function getCookie(name) {
 buildList()
 
 function getData() {
-    var url = 'http://127.0.0.1:8000/api/events/'
+    var url = '/api/events/'
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -90,13 +90,13 @@ function getData() {
 //}
 
 function icon_render(data, id){
-    $(`#form-event-edit-${id} .title-icon-container`).append(`<img src="${data.icon}">`)
+    $(`#form-event-edit-${id} .title-icon-container`).append(data.inline_svg)
 }
 function buildList() {
     //var wrapper = document.getElementById('list-wrapper')
     //wrapper.innerHTML = ''
 
-    var url = 'http://127.0.0.1:8000/api/events/'
+    var url = '/api/events/'
     
     fetch(url)
         .then((resp) => resp.json())
@@ -128,8 +128,8 @@ function newEvent(date) {
     let icons_list = []//[{value: '', selected: true, description: '', imageSrc: ''}]
     let icons_render = ''
     let colors_render = ''
-    let url_icons = 'http://127.0.0.1:8000/api/icons/'
-    let url_colors = 'http://127.0.0.1:8000/api/colors/'
+    let url_icons = '/api/icons/'
+    let url_colors = '/api/colors/'
     fetch(url_icons)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -197,7 +197,7 @@ function newEvent(date) {
             form.on('submit', function (e) {
                 e.preventDefault()
                 console.log(JSON.stringify(getFormData(form)))
-                var url = 'http://127.0.0.1:8000/api/events/'
+                var url = '/api/events/'
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -234,7 +234,7 @@ function newEvent(date) {
 //
 function editEvent(event_id) {
 //    let form = document.getElementById('form-edit-event')
-   let url = `http://127.0.0.1:8000/api/events/${event_id}/`
+   let url = `/api/events/${event_id}/`
    let form = $(`#form-event-edit-${event_id}`)
    console.log(getFormData(form))
    fetch(url, {
@@ -253,7 +253,7 @@ function editEvent(event_id) {
 }
 //on date click events render
 function dayEvents(date_data) {
-    let url = 'http://127.0.0.1:8000/api/events/'
+    let url = '/api/events/'
     fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
