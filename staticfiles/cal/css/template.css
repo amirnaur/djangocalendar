@@ -1,0 +1,202 @@
+svg.active path{
+    fill: #37B28D;
+}
+.month-days-container{
+    display: flex;
+    margin-top: 15px;
+}
+
+.weekdays-names{
+    display: flex;
+    align-items: center;
+}
+.weekday{
+    display: flex;
+    flex-direction: column;
+}
+
+.day-container ul{
+    padding: 0;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    list-style: none;
+    overflow: hidden;
+}
+
+.day-container ul li.event{
+    width: 50%;
+    height: 50%;
+    border-radius: 6px;
+    font-size: 10px;
+    line-height: 8.5px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 3px;
+    word-break: break-all;
+
+}
+.calendar th {
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+.day-name{
+    font-size: 13px;
+    color: #37B28D;
+}
+
+.month {
+    font-size: 28px;
+/*    background: linear-gradient(90deg, #ADF1CC 0.69%, rgba(173, 241, 204, 0) 93.39%);*/
+/*    border-radius: 33px;*/
+    color: #4f4f4f;
+    line-height: 41px
+}
+
+.date {
+  font-size: 16px;
+}
+.noday{
+    color: #c2c2c2;
+}
+.day-container.crossed{
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='black' stroke-width='1'/><path d='M0 0 L100 100 ' stroke='black' stroke-width='1'/></svg>");
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 100% 100%, auto;
+}
+ul {
+
+}
+
+a {
+  color: #17a2b8;
+}
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btn {
+  outline: none;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+}
+
+.clearfix {
+  margin: 15px;
+}
+.form {
+  margin: auto;
+}
+
+.form input, .form select, .form textarea {
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  outline: none;
+  background: none;
+  padding: 5px;
+  width: 100%;
+}
+
+/*modal inputs styles*/
+.event-title{
+    border: none;
+}
+.title-icon-container{
+    display: flex;
+}
+.event-input{
+    border: none;
+    border-bottom: 1px solid #E0E0E0;
+    border-radius: 0;
+    -webkit-appearence:none;
+}
+.event-input:focus{
+    border-bottom-color: #80bdff;
+    box-shadow: none;
+}
+.dd-options{
+    display: flex;
+    flex-wrap: wrap;
+}
+.dd-options svg{
+    margin-right: 15px;
+}
+/*Colors radio picker*/
+input[type="radio"] {
+  display: none;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button span {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  background: #eeeeee;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  transition: ease .3s;
+}
+
+.button span:hover {
+  padding: 10px;
+}
+
+label[id="757575"] .button span {
+  background: #757575;
+}
+
+label[id="F2994A"] .button span {
+  background: #F2994A;
+}
+
+label[id="F2C94C"] .button span {
+  background: #F2C94C;
+}
+
+label[id="00CCA7"] .button span {
+  background: #00CCA7;
+}
+
+label[id="2D9CDB"] .button span {
+  background: #2D9CDB;
+}
+
+label[id="EB5757"] .button span {
+  background: #EB5757;
+}
+
+label[id="4F4F4F"] .button span {
+  background: #4F4F4F;
+}
+
+label input[type="radio"]:checked ~ .button span {
+    border: 2px solid black;
+}

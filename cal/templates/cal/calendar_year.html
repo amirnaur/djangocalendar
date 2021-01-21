@@ -1,0 +1,22 @@
+{% extends 'cal/base.html' %}
+
+{% block content %}
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_year }}"> Previous Year </a>
+	{% load static %}
+	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_year }}"> Next Year </a>
+</div>
+{{ calendar }}
+
+{% endblock %}
+
+  {% block script %}
+  {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'cal/css/year/styles.css' %}">
+<script src="{% static 'cal/js/overlay.js' %}"></script>
+<script src="{% static 'cal/js/jquery.ddslick.min.js' %}"></script>
+ <link rel="stylesheet" type="text/css" href="{% static 'cal/css/year/overlay.css' %}">
+ <script src="{% static 'cal/js/modal-form.js' %}"></script>
+
+  {% endblock %}
+

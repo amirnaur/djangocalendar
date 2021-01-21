@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+<script src="jquery-3.5.1.min.js"></script>
+ <script src="jquery.ddslick.min.js"></script>
+ <select id="icons-select">
+    <option value="1" data-imagesrc="http://127.0.0.1:8000/media/icons/watch_24px.svg"></option>
+    <option value="2" data-imagesrc="http://127.0.0.1:8000/media/icons/create_24px.svg"></option>
+</select>
+ 
+ <script>
+$('#icons-select').ddslick({
+    width:300,
+    selectText: "Select your preferred social network",
+    imagePosition:"right",
+    onSelected: function(selectedData){
+        //callback function: do something with selectedData;
+    }   
+});      
+</script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+.day-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    margin: 0;
+    border: 1px solid #000000;
+}
+
+.week-num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #37b28d;
+    color: #ffffff;
+    margin: 0;
+    border: 1px solid #000000;
+
+}
+
+.month {
+    background: linear-gradient(90deg, #ADF1CC 0.69%, rgba(173, 241, 204, 0) 93.39%);
+    color: #4f4f4f;
+    line-height: 41px;
+    border: 1px solid #000000;
+}
