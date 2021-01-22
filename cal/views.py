@@ -6,10 +6,9 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-
 from .models import *
 from .utils import Yearcal
-from .forms import EventForm, ProfileForm
+from .forms import EventForm, ProfileForm, CreateUserForm
 
 
 class CalendarViewMonth(generic.ListView):
@@ -142,3 +141,15 @@ def profile(request):
         form.save()
         # return HttpResponseRedirect(reverse('cal:calendar'))
     return render(request, 'cal/profile.html', {'form': form})
+
+
+def registerPage(request):
+    form = CreateUserForm()
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'registration/registration.html', context)

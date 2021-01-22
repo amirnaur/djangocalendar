@@ -1,0 +1,30 @@
+{% extends "registration/base.html" %}
+
+{% block content %}
+<div class="form-container">
+   <div class="form-header">
+       <h3 class="title">Регистрация</h3>
+   </div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="input-icon-container username">
+            {{form.username}}
+        </div>
+        <div class="input-icon-container email">
+            {{form.email}}
+        </div>
+        <div class="input-icon-container password">
+            {{form.password1}}
+        </div>
+       <div class="input-icon-container password">
+            {{form.password2}}
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 submit-container">
+            <input class="btn login_btn" type="submit" value="Зарегистрироваться">
+        </div>
+        <a href="{% url 'login'%}" class="auth-url">Войти</a>
+    </form>
+    {{form.errors}}
+</div>
+{% endblock %}

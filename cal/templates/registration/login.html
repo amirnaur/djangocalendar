@@ -15,18 +15,22 @@
     {% endif %}
   {% endif %}
 
-<div>
+<div class="form-container">
+    <div class="form-header">
+        <h3 class="title">Вход</h3>
+    </div>
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <div>
-        {{ form.username.label_tag }}
-        {{ form.username }}
+    <div class="input-icon-container username">
+      {{form.username}}
     </div>
-    <div>
-        {{ form.password.label_tag }}
-        {{ form.password }}
+    <div class="input-icon-container password">
+      {{form.password}}
     </div>
-    <input type="submit" value="login" />
+    <div class="d-flex justify-content-center mt-3 submit-container">
+      <input class="btn login_btn" type="submit" value="Войти">
+    </div>
+    <a href="{% url 'registration'%}" class="auth-url">Зарегистрироваться</a>
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
 </div>
