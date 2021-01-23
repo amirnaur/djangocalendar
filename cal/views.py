@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta, date
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 import calendar
 
 from .models import *
@@ -126,6 +127,7 @@ def event(request, event_id=None):
     return render(request, 'cal/event.html', {'form': form})
 
 
+@login_required(login_url='login')
 def profile(request):
     initial_dict = {
         "template": request.user.profile.template,
@@ -150,6 +152,12 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('login')
 
     context = {'form': form}
     return render(request, 'registration/registration.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')

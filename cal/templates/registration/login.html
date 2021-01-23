@@ -1,12 +1,13 @@
 {% extends "registration/base.html" %}
 
 {% block content %}
+  
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  {% if next %}
+<div class="form-container">
+    <div class="form-header">
+        <h3 class="title">Вход</h3>
+    </div>
+    {% if next %}
     {% if user.is_authenticated %}
       <p>Your account doesn't have access to this page. To proceed,
       please login with an account that has access.</p>
@@ -14,11 +15,6 @@
       <p>Please login to see this page.</p>
     {% endif %}
   {% endif %}
-
-<div class="form-container">
-    <div class="form-header">
-        <h3 class="title">Вход</h3>
-    </div>
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <div class="input-icon-container username">
@@ -33,6 +29,9 @@
     <a href="{% url 'registration'%}" class="auth-url">Зарегистрироваться</a>
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
+  {% if form.errors %}
+  <p>Неверный логин или пароль.</p>
+{% endif %}
 </div>
 
   {# Assumes you setup the password_reset view in your URLconf #}

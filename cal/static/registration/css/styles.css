@@ -4,6 +4,7 @@ body {
 
 .auth__container {
   height: 100%;
+  padding: 20px;
 }
 
 .form-container {
