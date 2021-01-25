@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.utils.safestring import mark_safe
-from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 import calendar
 
@@ -65,7 +66,7 @@ class CalendarViewYear(generic.ListView):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('year', None))
         cal = Yearcal(d.year, request=self.request)
-        html_cal = cal.formatcustomrow(d.year, start_month=1,  length=12, rows=4)
+        html_cal = cal.formatcustomrow(d.year, start_month=1, length=12, rows=4)
         context['calendar'] = mark_safe(html_cal)
         context['prev_year'] = prev_year(d)
         context['next_year'] = next_year(d)
@@ -101,7 +102,7 @@ def prev_year(d):
 
 
 def next_year(d):
-    next_y = d.replace(year =d.year + 1)
+    next_y = d.replace(year=d.year + 1)
     year = 'year=' + str(next_y.year) + '-' + str(next_y.month)
     return year
 
@@ -143,6 +144,27 @@ def profile(request):
         form.save()
         # return HttpResponseRedirect(reverse('cal:calendar'))
     return render(request, 'cal/profile.html', {'form': form})
+
+
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('calendar/year')
+    else:
+        form = AuthenticationForm()
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('login')
+            # else:
+            #     messages.info(request, 'Username OR password is incorrect')
+
+        context = {'form': form}
+        return render(request, 'registration/login.html', context)
 
 
 def registerPage(request):

@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
+
 class EventForm(ModelForm):
     class Meta:
         model = Event
@@ -31,6 +32,8 @@ class ProfileForm(ModelForm):
         #     'cross': True,
         # }
         fields = ('template', 'show_year', 'cross',)
+
+# class LoginUserForm():
 
 
 class CreateUserForm(UserCreationForm):
