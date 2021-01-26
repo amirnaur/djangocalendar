@@ -29,9 +29,12 @@
     <a href="{% url 'registration'%}" class="auth-url">Зарегистрироваться</a>
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
-  {% if form.errors %}
+  <!-- {% if form.errors %}
   <p>Неверный логин или пароль.</p>
-{% endif %}
+{% endif %} -->
+    {% for message in messages %}
+      <p id="messages">{{ message }}</p>
+    {% endfor %}
 </div>
 
   {# Assumes you setup the password_reset view in your URLconf #}

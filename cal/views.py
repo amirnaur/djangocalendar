@@ -6,6 +6,7 @@ from django.utils.safestring import mark_safe
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import calendar
 
 from .models import *
@@ -15,7 +16,7 @@ from .forms import EventForm, ProfileForm, CreateUserForm
 
 class CalendarViewMonth(generic.ListView):
     model = Event
-    template_name = 'cal/calendar_month.html'
+    template_name = 'cal/calendar_templates/calendar_month.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,7 +31,7 @@ class CalendarViewMonth(generic.ListView):
 
 class CalendarView3Months(generic.ListView):
     model = Event
-    template_name = 'cal/calendar_3months.html'
+    template_name = 'cal/calendar_templates/calendar_3months.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,7 +46,7 @@ class CalendarView3Months(generic.ListView):
 
 class CalendarView6Months(generic.ListView):
     model = Event
-    template_name = 'cal/calendar_6months.html'
+    template_name = 'cal/calendar_templates/calendar_6months.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,7 +61,7 @@ class CalendarView6Months(generic.ListView):
 
 class CalendarViewYear(generic.ListView):
     model = Event
-    template_name = 'cal/calendar_year.html'
+    template_name = 'cal/calendar_templates/calendar_year.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,9 +161,8 @@ def loginPage(request):
             if user is not None:
                 login(request, user)
                 return redirect('login')
-            # else:
-            #     messages.info(request, 'Username OR password is incorrect')
-
+            else:
+                messages.info(request, "Неверный логин или пароль")
         context = {'form': form}
         return render(request, 'registration/login.html', context)
 
@@ -174,6 +174,8 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, "Создан пользователь " + user)
             return redirect('login')
 
     context = {'form': form}

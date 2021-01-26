@@ -1,7 +1,6 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -10,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
     <link rel="stylesheet" type="text/css" href="{% static '/cal/css/template.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/cal/css/header/header.css' %}">
     {% if request.user.profile.template == "modern.css" %}
     <link rel="stylesheet" type="text/css" href="{% static '/cal/css/modern.css' %}">
     {% endif %}
@@ -18,47 +18,8 @@
     {% endif %}
     <title>Django Calendar App</title>
 </head>
-
 <body>
-    <header>
-        <div class="views-container">
-            {%  url 'cal:profile_edit' as url_profile %}
-            <a class="view-type" href="{% url 'cal:profile_edit' %}">
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {% if request.path == url_profile %} class="active" {% endif %}>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M40.6249 25.0001C40.6249 25.7084 40.5624 26.3751 40.4791 27.0417L44.8749 30.4792C45.2707 30.7917 45.3749 31.3543 45.1249 31.8126L40.9582 39.0209C40.7082 39.4792 40.1666 39.6668 39.6874 39.4793L34.4999 37.3959C33.4166 38.2084 32.2499 38.9168 30.9791 39.4376L30.1874 44.9584C30.1249 45.4584 29.6874 45.8334 29.1666 45.8334H20.8332C20.3124 45.8334 19.8749 45.4584 19.8124 44.9584L19.0207 39.4376C17.7499 38.9168 16.5832 38.2293 15.4999 37.3959L10.3124 39.4793C9.85408 39.6459 9.29158 39.4792 9.04158 39.0209L4.87491 31.8126C4.62491 31.3543 4.72908 30.7917 5.12491 30.4792L9.52074 27.0417C9.43741 26.3751 9.37491 25.6876 9.37491 25.0001C9.37491 24.3126 9.43741 23.6251 9.52074 22.9584L5.12491 19.5209C4.72908 19.2084 4.60408 18.6459 4.87491 18.1876L9.04158 10.9792C9.29158 10.5209 9.83324 10.3334 10.3124 10.5209L15.4999 12.6042C16.5832 11.7917 17.7499 11.0834 19.0207 10.5626L19.8124 5.04175C19.8749 4.54175 20.3124 4.16675 20.8332 4.16675H29.1666C29.6874 4.16675 30.1249 4.54175 30.1874 5.04175L30.9791 10.5626C32.2499 11.0834 33.4166 11.7709 34.4999 12.6042L39.6874 10.5209C40.1457 10.3542 40.7082 10.5209 40.9582 10.9792L45.1249 18.1876C45.3749 18.6459 45.2707 19.2084 44.8749 19.5209L40.4791 22.9584C40.5624 23.6251 40.6249 24.2917 40.6249 25.0001ZM17.7084 25.0001C17.7084 29.0209 20.9792 32.2917 25.0001 32.2917C29.0209 32.2917 32.2917 29.0209 32.2917 25.0001C32.2917 20.9792 29.0209 17.7084 25.0001 17.7084C20.9792 17.7084 17.7084 20.9792 17.7084 25.0001Z" fill="#E0E0E0" />
-                </svg>
-            </a>
-            {%  url 'cal:calendar_month' as url_month %}
-            <a class="view-type" href="{% url 'cal:calendar_month' %}">
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" {% if request.path == url_month %} class="active" {% endif %}>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.66699 11V5.5H38.5003V11H3.66699ZM36.667 14.6667H5.50033C4.49199 14.6667 3.66699 15.4917 3.66699 16.5V27.5C3.66699 28.5083 4.49199 29.3333 5.50033 29.3333H36.667C37.6753 29.3333 38.5003 28.5083 38.5003 27.5V16.5C38.5003 15.4917 37.6753 14.6667 36.667 14.6667ZM3.66699 38.5H38.5003V33H3.66699V38.5Z" fill="#E0E0E0" />
-                </svg>
-            </a>
-            {%  url 'cal:calendar_3months' as url_3months %}
-            <a class="view-type" href="{% url 'cal:calendar_3months' %}">
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {% if request.path == url_3months %} class="active" {% endif %}>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.33398 37.5001H18.7507V10.4167H8.33398V37.5001ZM20.834 37.5001H31.2507V10.4167H20.834V37.5001ZM33.334 37.5001V10.4167H43.7506V37.5001H33.334Z" fill="#E0E0E0" />
-                </svg>
-            </a>
-            {%  url 'cal:calendar_6months' as url_6months %}
-            <a class="view-type" href="{% url 'cal:calendar_6months' %}">
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {% if request.path == url_6months %} class="active" {% endif %}>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 40.0001H17.4167V26.3638H7V40.0001ZM19.5 40.0001H29.9167V26.3638H19.5V40.0001ZM32 40.0001V26.3638H42.4167V40.0001H32Z" fill="#E0E0E0" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 23.6363H17.4167V10H7V23.6363ZM19.5 23.6363H29.9167V10H19.5V23.6363ZM32 23.6363V10H42.4167V23.6363H32Z" fill="#E0E0E0" />
-                </svg>
-            </a>
-            {%  url 'cal:calendar' as url_calendar %}
-            <a class="view-type" href="{% url 'cal:calendar' %}">
-                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" {% if request.path == url_calendar %} class="active" {% endif %}>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23.3693 18.7498H15.8096V10.4165H23.3693V18.7498ZM13.8098 18.7499H6.25V10.4166H13.8098V18.7499ZM25.3691 18.7498H32.9289V10.4165H25.3691V18.7498ZM42.4885 18.7498H34.9287V10.4165H42.4885V18.7498Z" fill="#E0E0E0" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23.3693 29.1666H15.8096V20.8333H23.3693V29.1666ZM13.8098 29.1667H6.25V20.8333H13.8098V29.1667ZM25.3691 29.1666H32.9289V20.8333H25.3691V29.1666ZM42.4885 29.1666H34.9287V20.8333H42.4885V29.1666Z" fill="#E0E0E0" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M23.3693 39.5833H15.8096V31.25H23.3693V39.5833ZM13.8098 39.5834H6.25V31.2501H13.8098V39.5834ZM25.3691 39.5833H32.9289V31.25H25.3691V39.5833ZM42.4885 39.5833H34.9287V31.25H42.4885V39.5833Z" fill="#E0E0E0" />
-                </svg>
-            </a>
-            <a href="{% url 'logout'%}">Выйти</a>
-        </div>
-        {{ request.user }}
-    </header>
+    {% include "cal/header.html" %}
     {% block content %}
     {% endblock %}
 

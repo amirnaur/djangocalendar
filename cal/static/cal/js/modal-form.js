@@ -105,7 +105,7 @@ function buildList() {
             events = data
             for (let i in events) {
                 let event_date = events[i].date_time
-                if($(`#${event_date} ul`).length){
+                if($(`#${event_date} ul li`).length){
                     console.log(event_date)
                     $(`#${event_date} ul`)[0].innerHTML = ''
                 }
@@ -251,6 +251,29 @@ function editEvent(event_id) {
 //        overlay_new_event.close()
 })
 }
+//
+function deleteEvent(event_id) {
+       let url = `/api/events/${event_id}/`
+       let form = $(`#form-event-edit-${event_id}`)
+       console.log(getFormData(form))
+       fetch(url, {
+           method: 'DELETE',
+           headers: {
+               'Content-type': 'application/json',
+               'X-CSRFToken': csrftoken,
+           },
+           body: JSON.stringify(getFormData(form))
+       }).then(function (response) {
+            console.log("response", response)
+            if(response.ok){
+                $(`#form-event-edit-${event_id}`).remove()
+            }
+            buildList()
+    //        form[0].reset()
+    //        overlay_new_event.close()
+    })
+    }
+//
 //on date click events render
 function dayEvents(date_data) {
     let url = '/api/events/'
@@ -282,6 +305,9 @@ function dayEvents(date_data) {
                 <form id="form-event-edit-${events[i].id}">
                     <div class="event-container">
                         <label for="event-title" class="col-form-label">Название:</label>
+                        <button type="button" class="close" data-dismiss="modal" onclick="deleteEvent(${events[i].id})" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                         <div class="title-icon-container">
                             <input type="text" name="title" data-id="${events[i].id}" onblur="editEvent(${events[i].id});" id="event-title" class="form-control event-title" value="${events[i].title}">
                         </div>
@@ -291,8 +317,8 @@ function dayEvents(date_data) {
                         <input type="hidden" name="icon" data-id="${events[i].id}" value="${events[i].icon}">
                         <input type="hidden" name="event_color" data-id="${events[i].id}" value="${events[i].event_color}">
                     </div>
+                    <hr>
                 </form>
-                <hr>
     `
                 }
             }

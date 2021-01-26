@@ -1,0 +1,8 @@
+header .views-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+header .config {
+  padding-left: 50px;
+}
