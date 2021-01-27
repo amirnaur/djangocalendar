@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views import generic
 from django.utils.safestring import mark_safe
 from django.contrib.auth.forms import AuthenticationForm
@@ -65,12 +65,18 @@ class CalendarViewYear(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        initial_dict = {
+            "template": self.request.user.profile.template,
+            "show_year": self.request.user.profile.show_year,
+            "cross": self.request.user.profile.cross,
+        }
         d = get_date(self.request.GET.get('year', None))
         cal = Yearcal(d.year, request=self.request)
         html_cal = cal.formatcustomrow(d.year, start_month=1, length=12, rows=4)
         context['calendar'] = mark_safe(html_cal)
         context['prev_year'] = prev_year(d)
         context['next_year'] = next_year(d)
+        context['profile'] = ProfileForm(initial=initial_dict, instance=self.request.user.profile)
         return context
 
 
@@ -136,7 +142,6 @@ def profile(request):
         "show_year": request.user.profile.show_year,
         "cross": request.user.profile.cross,
     }
-    form = ProfileForm(request.POST, initial=initial_dict, instance=request.user.profile)
     if request.method == "POST":
         form = ProfileForm(request.POST, instance=request.user.profile)
     else:
@@ -144,7 +149,10 @@ def profile(request):
     if form.is_valid():
         form.save()
         # return HttpResponseRedirect(reverse('cal:calendar'))
-    return render(request, 'cal/profile.html', {'form': form})
+        if 'calendar' in request.META.get('HTTP_REFERER'):
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            redirect('calendar/year')
 
 
 def loginPage(request):

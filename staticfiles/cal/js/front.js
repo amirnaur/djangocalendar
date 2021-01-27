@@ -350,3 +350,16 @@ function dayEvents(date_data) {
             overlay_day_events.open()
         });
 }
+
+//appearence
+$('#config svg').click(function(){
+    if ($(this).hasClass('active')) {
+        $('#config .config-modal-form').height('');
+        $(this).removeClass('active');
+    } else {
+        console.log(+$(this).find('form').height()+50)
+        $('#config .config-modal-form').height(+$('#config .config-modal-form').find('form').height()+50);
+        $(this).addClass('active');
+
+    }
+});

@@ -1,8 +1,42 @@
+header svg {
+  cursor: pointer;
+}
+header svg.active path {
+  fill: #37B28D;
+}
 header .views-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
-header .config {
-  padding-left: 50px;
+header #config {
+  margin-left: 50px;
+  position: relative;
+}
+header #config .config-modal-form {
+  height: 0px;
+  overflow: hidden;
+  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+  position: absolute;
+  z-index: 1000;
+  right: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgba(17, 59, 68, 0.2);
+  border-radius: 10px;
+}
+header #config .config-modal-form form.profile_form {
+  display: flex;
+  flex-direction: column;
+}
+header #config .config-modal-form form.profile_form button[type=submit] {
+  cursor: pointer;
+  background: linear-gradient(180deg, #069685 0%, #069685 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+header #config svg.active ~ .config-modal-form {
+  padding: 20px;
 }

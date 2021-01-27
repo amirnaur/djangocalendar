@@ -2,10 +2,6 @@ ul {
   margin: 0;
 }
 
-svg.active path {
-  fill: #37B28D;
-}
-
 .month-days-container {
   display: flex;
   margin-top: 15px;
