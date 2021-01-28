@@ -111,7 +111,7 @@ class Yearcal(HTMLCalendar):
         cal += f'<div class="flex-row">'
         cal += weekday_names
         cal += f'<div class="month-container">'
-        cal += f'<div class="month">{month_names[themonth]} {theyear}</div>'
+        cal += f'<div class="month">{month_names[themonth]} <span class="year">{theyear}</span></div>'
         cal += f'<div class="flex-row">'
         for week in weeks:
             if isleap(week[3].year):
@@ -266,11 +266,11 @@ class Yearcal(HTMLCalendar):
                                 <div class="weekday-empty"></div>\
                                 <div class="weekday-names-container">\
                                 <div class="weekday-name"></div>\
-                                <div class="weekday-name">Пн.</div>\
-                                <div class="weekday-name">Вт.</div>\
-                                <div class="weekday-name">Ср.</div><div class="weekday-name">Чт.</div>\
-                                <div class="weekday-name">Пт.</div><div class="weekday-name">Сб.</div>\
-                                <div class="weekday-name">Вс.</div></div></div>'
+                                <div class="weekday-name">пн</div>\
+                                <div class="weekday-name">вт</div>\
+                                <div class="weekday-name">ср</div><div class="weekday-name">чт</div>\
+                                <div class="weekday-name">пт</div><div class="weekday-name">пт</div>\
+                                <div class="weekday-name">вс</div></div></div>'
         # cal += weekday_names
 
         for _ in range(rows):
@@ -286,7 +286,7 @@ class Yearcal(HTMLCalendar):
                 current_year = theyear + 1 if start_month > month else theyear
                 cal += f'<div class="month-container">'
                 if self.request.user.profile.show_year:
-                    cal += f'<div class="month">{month_names[month]} {current_year}</div>'
+                    cal += f'<div class="month">{month_names[month]} <span class="year">{current_year}</span></div>'
                 else:
                     cal += f'<div class="month">{month_names[month]}</div>'
                 cal += f'<div class="flex-row">'

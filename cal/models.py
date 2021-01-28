@@ -13,7 +13,7 @@ class Profile(models.Model):
         ("table.css", "Таблица"),
         ("modern.css", "Современный"),
     ]
-    template = models.CharField(max_length=30, choices=TEMPLATES, default="modern.css", verbose_name="Шаблон")
+    template = models.CharField(max_length=30, choices=TEMPLATES, default="modern.css", verbose_name="Вид календаря")
     show_year = models.BooleanField(default=True, verbose_name="Показывать год")
     cross = models.BooleanField(default=True, verbose_name="Зачеркивание")
 

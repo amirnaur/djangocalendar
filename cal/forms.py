@@ -26,12 +26,12 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        # widgets = {
-        #     'template': 'modern.css',
-        #     'show_year': True,
-        #     'cross': True,
-        # }
         fields = ('template', 'show_year', 'cross',)
+        CHOICES = [("table.css", "Таблица"), ("modern.css", "Современный")]
+        widgets = {
+            'template': forms.RadioSelect(choices=CHOICES)
+        }
+
 
 # class LoginUserForm():
 
@@ -43,8 +43,6 @@ class CreateUserForm(UserCreationForm):
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Логин'}),
             'email': forms.EmailInput(attrs={'placeholder': 'email@example.com'}),
-            'password1': forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
-            'password2': forms.PasswordInput(attrs={'placeholder': 'Подтвердите пароль'}),
         }
 
     def __init__(self, *args, **kwargs):

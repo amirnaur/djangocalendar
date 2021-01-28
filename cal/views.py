@@ -90,7 +90,7 @@ class CalendarViewYear(generic.ListView):
         }
         d = get_date(self.request.GET.get('year', None))
         cal = Yearcal(d.year, request=self.request)
-        html_cal = cal.formatcustomrow(d.year, start_month=1, length=12, rows=4)
+        html_cal = cal.formatcustomrow(d.year, start_month=1, length=12, rows=3)
         context['calendar'] = mark_safe(html_cal)
         context['prev_year'] = prev_year(d)
         context['next_year'] = next_year(d)

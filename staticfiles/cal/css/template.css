@@ -144,8 +144,10 @@ a {
 }
 
 /*Colors radio picker*/
-input[type=radio] {
-  display: none;
+.dd-options input[type=radio] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
 }
 
 .button {
