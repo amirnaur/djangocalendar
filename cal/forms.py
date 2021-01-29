@@ -1,6 +1,6 @@
 from django.forms import ModelForm, DateInput
 from .models import Event, Profile
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.contrib.auth.models import User
 
@@ -33,7 +33,14 @@ class ProfileForm(ModelForm):
         }
 
 
-# class LoginUserForm():
+class LoginUserForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Логин'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
+        }
 
 
 class CreateUserForm(UserCreationForm):

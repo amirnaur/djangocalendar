@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: 300;
+  src: local("SF UI Display"), url("fonts/sf-ui-display/sf-ui-display-light-58646b33e0551.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: 500;
+  src: local("SF UI Display"), url("fonts/sf-ui-display/sf-ui-display-medium-58646be638f96.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: 700;
+  src: local("SF UI Display"), url("fonts/sf-ui-display/sf-ui-display-bold-58646a511e3d9.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: normal;
+  font-weight: 400;
+  src: local("SF UI Text Regular"), url("fonts/sf-ui-text/SFUIText-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: italic;
+  font-weight: 400;
+  src: local("SF UI Text"), url("fonts/sf-ui-text/SFUIText-RegularItalic.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: normal;
+  font-weight: 500;
+  src: local("SF UI Text Medium"), url("fonts/sf-ui-text/SFUIText-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: italic;
+  font-weight: 500;
+  src: local("SF UI Text"), url("fonts/sf-ui-text/SFUIText-MediumItalic.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: normal;
+  font-weight: 700;
+  src: local("SF UI Text"), url("fonts/sf-ui-text/SFUIText-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "SF UI Text";
+  font-style: italic;
+  font-weight: 700;
+  src: local("SF UI Text"), url("fonts/sf-ui-text/SFUIText-BoldItalic.woff") format("woff");
+}
+* {
+  font-family: "SF UI Text" !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "SF UI Display" !important;
+  font-weight: 700 !important;
+}
+
+ul {
+  margin: 0;
+}

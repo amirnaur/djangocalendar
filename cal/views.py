@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views import generic
 from django.utils.safestring import mark_safe
-from django.contrib.auth.forms import AuthenticationForm
+# from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -11,7 +11,7 @@ import calendar
 
 from .models import *
 from .utils import Yearcal
-from .forms import EventForm, ProfileForm, CreateUserForm
+from .forms import EventForm, ProfileForm, CreateUserForm, LoginUserForm
 
 
 class CalendarViewMonth(generic.ListView):
@@ -177,7 +177,7 @@ def loginPage(request):
     if request.user.is_authenticated:
         return redirect('calendar/year')
     else:
-        form = AuthenticationForm()
+        form = LoginUserForm()
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
