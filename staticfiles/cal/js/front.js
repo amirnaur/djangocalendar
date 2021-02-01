@@ -126,6 +126,7 @@ function newEvent(date) {
 //    console.log("newEvent", date)
     let new_event_render = ''
     let icons_list = []//[{value: '', selected: true, description: '', imageSrc: ''}]
+    let colors_list = []
     let icons_render = ''
     let colors_render = ''
     let url_icons = '/api/icons/'
@@ -142,12 +143,30 @@ function newEvent(date) {
                     svgInline: data[i].inline_svg
                 })
             }
+//             for (let i in colors) {
+//                 colors_render += `
+// <label id="${colors[i].color}">
+//   <input type="radio" name="event_color" value="${colors[i].id}">
+//   <div class="button"><span></span></div>
+// </label>`
+            // }
             for (let i in colors) {
+                colors_list.push({
+                    value: +i+1,
+                    selected: false,
+                    description: '',
+                    imageSrc: '',
+                    svgInline: `<label id="${colors[i].color}">
+                    <input type="radio" name="event_color" value="${colors[i].id}">
+                    <div class="button"><span></span></div>
+                  </label>`
+                })
                 colors_render += `
 <label id="${colors[i].color}">
   <input type="radio" name="event_color" value="${colors[i].id}">
   <div class="button"><span></span></div>
 </label>`
+
             }
             //            for (let i in data){
             ////                console.log("AAA",icons_list[i])
@@ -156,13 +175,11 @@ function newEvent(date) {
             //`           }
             new_event_render += `
     <input type="hidden" name="date_time" id="date-input-hidden" value=${date}>
-    <label for="event-title" class="col-form-label">Название:</label>
     <div class="title-icon-container">
-    <input type="text" class="form-control event-input" name="title" id="event-title">
-    <div id="icons-select">
+    <input type="text" class="form-control event-input" name="title" id="event-title" placeholder="Выберите тему...">
+    <div id="icons-select"></div>
+    <div id="colors-select"></div>
     </div>
-    </div>
-    <label for="event-desc" class="col-form-label">Описание:</label>
     <textarea class="form-control" name="description" id="event-desc"></textarea>
 `
             overlay_new_event.content.innerHTML += `
@@ -186,17 +203,28 @@ function newEvent(date) {
             overlay_new_event.open()
             $('#icons-select').ddslick({
                 data: icons_list,
+                input_name: "icon",
                 width: 75,
                 selectText: "",
                 imagePosition: "right",
                 onSelected: function (selectedData) {
                 }
             });
-            $('.dd-options.dd-click-off-close').append(colors_render)
+            $('#colors-select').ddslick({
+                data: colors_list,
+                input_name: "event_color",
+                width: 75,
+                selectText: "",
+                imagePosition: "right",
+                onSelected: function (selectedData) {
+                    let i = selectedData.selectedIndex
+                    $('#icons-select svg path').css({ fill: '#'+colors[i].color })
+                }
+            });
+            // $('.dd-options.dd-click-off-close').append(colors_render)
             let form = $('#form-event-create')
             form.on('submit', function (e) {
                 e.preventDefault()
-                console.log(JSON.stringify(getFormData(form)))
                 var url = '/api/events/'
                 fetch(url, {
                     method: 'POST',
@@ -207,6 +235,7 @@ function newEvent(date) {
                     body: JSON.stringify(getFormData(form))
                     }).then(function (response) {
 //                        console.log("response", response)
+                        console.log(JSON.stringify(getFormData(form)))
                         buildList()
                         form[0].reset()
                         overlay_new_event.close()
@@ -236,7 +265,6 @@ function editEvent(event_id) {
 //    let form = document.getElementById('form-edit-event')
    let url = `/api/events/${event_id}/`
    let form = $(`#form-event-edit-${event_id}`)
-   console.log(getFormData(form))
    fetch(url, {
        method: 'PUT',
        headers: {
@@ -245,7 +273,6 @@ function editEvent(event_id) {
        },
        body: JSON.stringify(getFormData(form))
    }).then(function (response) {
-        console.log("response", response)
         buildList()
 //        form[0].reset()
 //        overlay_new_event.close()
@@ -255,7 +282,6 @@ function editEvent(event_id) {
 function deleteEvent(event_id) {
        let url = `/api/events/${event_id}/`
        let form = $(`#form-event-edit-${event_id}`)
-       console.log(getFormData(form))
        fetch(url, {
            method: 'DELETE',
            headers: {
@@ -264,7 +290,6 @@ function deleteEvent(event_id) {
            },
            body: JSON.stringify(getFormData(form))
        }).then(function (response) {
-            console.log("response", response)
             if(response.ok){
                 $(`#form-event-edit-${event_id}`).remove()
             }
@@ -295,7 +320,7 @@ function dayEvents(date_data) {
 //                            comment_o: JSON.stringify(jsonCommon[i]["comment_o"])
 //                        },
                         success: function (response) {
-                            console.log(response.icon)
+                            // console.log(response.icon)
                             icon_render(response, events[i].id)
                             
                         }
@@ -357,7 +382,7 @@ $('#config svg').click(function(){
         $('#config .config-modal-form').height('');
         $(this).removeClass('active');
     } else {
-        console.log(+$(this).find('form').height()+50)
+        // console.log(+$(this).find('form').height()+50)
         $('#config .config-modal-form').height(+$('#config .config-modal-form').find('form').height()+50);
         $(this).addClass('active');
 

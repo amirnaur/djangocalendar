@@ -37,10 +37,11 @@ class LoginUserForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Логин'}),
-            'password': forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}),
-        }
+
+    def __init__(self, *args, **kwargs):
+        super(LoginUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(attrs={'placeholder': 'Логин'})
+        self.fields['password'].widget = forms.PasswordInput(attrs={'placeholder': 'Введите пароль'})
 
 
 class CreateUserForm(UserCreationForm):

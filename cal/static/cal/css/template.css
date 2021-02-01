@@ -100,7 +100,9 @@ a {
   margin: auto;
 }
 
-.form input, .form select, .form textarea {
+.form input,
+.form select,
+.form textarea {
   border-radius: 5px;
   border: 1px solid #17a2b8;
   outline: none;
@@ -130,6 +132,15 @@ a {
   box-shadow: none;
 }
 
+.dd-container {
+  display: flex;
+  align-items: center;
+}
+.dd-container ul.dd-options {
+  top: 50px;
+  left: 50px;
+}
+
 .dd-options {
   display: flex;
   flex-wrap: wrap;
@@ -140,17 +151,20 @@ a {
 }
 
 /*Colors radio picker*/
-.dd-options input[type=radio] {
+#colors-select input[type=radio] {
   opacity: 0;
   position: absolute;
   width: 0;
+}
+#colors-select label {
+  margin: 0;
 }
 
 .button {
   display: inline-block;
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   margin: 10px;
   cursor: pointer;
 }
@@ -158,8 +172,8 @@ a {
 .button span {
   display: block;
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   padding: 0;
   top: 50%;
   left: 50%;

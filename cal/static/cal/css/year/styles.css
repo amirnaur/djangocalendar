@@ -155,9 +155,4 @@ a {
   box-shadow: none;
 }
 
-.dd-options {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 /*Colors radio picker*/
