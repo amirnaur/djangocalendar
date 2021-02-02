@@ -26,7 +26,7 @@ class CalendarViewMonth(generic.ListView):
             "cross": self.request.user.profile.cross,
         }
         d = get_date(self.request.GET.get('month', None))
-        cal = Yearcal(d.year, d.month, self.request)
+        cal = Yearcal(d.year, d.month, self.request.user)
         html_cal = cal.formatcustomrow(theyear=d.year, start_month=d.month, length=1, rows=1)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -47,7 +47,7 @@ class CalendarView3Months(generic.ListView):
             "cross": self.request.user.profile.cross,
         }
         d = get_date(self.request.GET.get('month', None))
-        cal = Yearcal(d.year, d.month, self.request)
+        cal = Yearcal(d.year, d.month, self.request.user)
         html_cal = cal.formatcustomrow(theyear=d.year, start_month=d.month, length=3, rows=1)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -68,7 +68,7 @@ class CalendarView6Months(generic.ListView):
             "cross": self.request.user.profile.cross,
         }
         d = get_date(self.request.GET.get('month', None))
-        cal = Yearcal(d.year, d.month, self.request)
+        cal = Yearcal(d.year, d.month, self.request.user)
         html_cal = cal.formatcustomrow(theyear=d.year, start_month=d.month, length=6, rows=2)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -89,7 +89,7 @@ class CalendarViewYear(generic.ListView):
             "cross": self.request.user.profile.cross,
         }
         d = get_date(self.request.GET.get('year', None))
-        cal = Yearcal(d.year, request=self.request)
+        cal = Yearcal(d.year, d.month, self.request.user)
         html_cal = cal.formatcustomrow(d.year, start_month=1, length=12, rows=3)
         context['calendar'] = mark_safe(html_cal)
         context['prev_year'] = prev_year(d)

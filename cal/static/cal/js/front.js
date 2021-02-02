@@ -131,6 +131,12 @@ function newEvent(date) {
     let colors_render = ''
     let url_icons = '/api/icons/'
     let url_colors = '/api/colors/'
+    let date_this = new Date(date)
+    let year = date_this.getFullYear()
+    let day_month = date_this.toLocaleString('ru', {
+        day: 'numeric',
+        month: 'long',
+        });
     fetch(url_icons)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -180,11 +186,11 @@ function newEvent(date) {
     <div id="icons-select"></div>
     <div id="colors-select"></div>
     </div>
-    <textarea class="form-control" name="description" id="event-desc"></textarea>
+    <textarea class="event-description" name="description" id="event-desc" placeholder="Введите описание.."></textarea>
 `
             overlay_new_event.content.innerHTML += `
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">${date}</h5>
+    <h5 class="modal-title" id="exampleModalLabel"><span class="modal-year">${year}</span></br>${day_month}</h5>
     <button type="button" class="close" data-dismiss="modal" onclick="overlay_new_event.close()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -218,7 +224,7 @@ function newEvent(date) {
                 imagePosition: "right",
                 onSelected: function (selectedData) {
                     let i = selectedData.selectedIndex
-                    $('#icons-select svg path').css({ fill: '#'+colors[i].color })
+                    $('#icons-select svg path').css({ fill: '#'+colors[i].color, 'fill-opacity': 1, })
                 }
             });
             // $('.dd-options.dd-click-off-close').append(colors_render)
@@ -309,6 +315,12 @@ function dayEvents(date_data) {
             events = data
             let day_events_render = ''
             overlay_day_events.content.innerHTML = ''
+            let date_this = new Date(date_data.id)
+            let year = date_this.getFullYear()
+            let day_month = date_this.toLocaleString('ru', {
+                day: 'numeric',
+                month: 'long',
+              });
             for (let i in events) {
 //                console.log("Events", events)
                 if (date_data.id == events[i].date_time) {
@@ -349,7 +361,7 @@ function dayEvents(date_data) {
             }
             overlay_day_events.content.innerHTML += `
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">${date_data.id}</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><span class="modal-year">${year}</span></br>${day_month}</h5>
         <button type="button" class="close" data-dismiss="modal" onclick="overlay_day_events.close()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -383,7 +395,7 @@ $('#config svg').click(function(){
         $(this).removeClass('active');
     } else {
         // console.log(+$(this).find('form').height()+50)
-        $('#config .config-modal-form').height(+$('#config .config-modal-form').find('form').height()+50);
+        $('#config .config-modal-form').height(+$('#config .config-modal-form').find('form').height()+80);
         $(this).addClass('active');
 
     }

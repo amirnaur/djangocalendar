@@ -1,3 +1,7 @@
+body {
+  background-color: #FCFCFC;
+}
+
 .month-days-container {
   display: flex;
   margin-top: 15px;
@@ -111,7 +115,22 @@ a {
   width: 100%;
 }
 
-/*modal inputs styles*/
+/*modal styles*/
+.modal-header {
+  background: linear-gradient(180deg, #07AB84 0%, #069685 100%);
+  border-radius: 0;
+  padding: 30px;
+}
+
+.modal-title {
+  color: #ffffff;
+}
+
+.modal-year {
+  font-weight: normal;
+  font-size: 16px;
+}
+
 .event-title {
   border: none;
 }
@@ -122,7 +141,6 @@ a {
 
 .event-input {
   border: none;
-  border-bottom: 1px solid #E0E0E0;
   border-radius: 0;
   -webkit-appearence: none;
 }

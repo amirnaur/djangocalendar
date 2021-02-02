@@ -134,25 +134,4 @@ a {
   width: 100%;
 }
 
-/*modal inputs styles*/
-.event-title {
-  border: none;
-}
-
-.title-icon-container {
-  display: flex;
-}
-
-.event-input {
-  border: none;
-  border-bottom: 1px solid #E0E0E0;
-  border-radius: 0;
-  -webkit-appearence: none;
-}
-
-.event-input:focus {
-  border-bottom-color: #80bdff;
-  box-shadow: none;
-}
-
 /*Colors radio picker*/

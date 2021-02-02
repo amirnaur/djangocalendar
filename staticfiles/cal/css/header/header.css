@@ -1,3 +1,9 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 30px 0 30px;
+  position: relative;
+}
 header svg {
   cursor: pointer;
 }
@@ -6,24 +12,28 @@ header svg.active path {
 }
 header .views-container {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
-header #config {
-  margin-left: 50px;
+header #config svg {
   position: relative;
+  z-index: 500;
 }
 header #config .config-modal-form {
+  min-width: 320px;
   height: 0px;
   overflow: hidden;
   transition-duration: 0.8s;
   -webkit-transition-duration: 0.8s;
   position: absolute;
-  z-index: 1000;
+  z-index: 400;
   right: 20px;
+  top: 20px;
   background: #FFFFFF;
   box-shadow: 0px 2px 10px rgba(17, 59, 68, 0.2);
   border-radius: 10px;
+}
+header #config .config-modal-form .config-title {
+  color: #979797;
 }
 header #config .config-modal-form form.profile_form {
   display: flex;
