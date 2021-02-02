@@ -200,7 +200,7 @@ function newEvent(date) {
 
         ${new_event_render}
     <div class="modal-footer">
-        <input id="submit" class="btn btn-primary" type="submit" value="Сохранить">
+        <input id="submit" class="btn btn-submit" type="submit" value="Сохранить">
     </div>
 
     </form>
@@ -371,7 +371,7 @@ function dayEvents(date_data) {
         ${day_events_render}
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="overlay_day_events.close(); newEvent('${date_data.id}');">Новое событие</button>
+            <button type="button" class="btn btn-submit" onclick="overlay_day_events.close(); newEvent('${date_data.id}');">Новое событие</button>
         </div>
     </div>
 `

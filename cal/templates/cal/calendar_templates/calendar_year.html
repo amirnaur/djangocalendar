@@ -1,9 +1,9 @@
 {% extends 'cal/base.html' %}
 {% load static %}
 {% block content %}
-<div class="clearfix">
-	<a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_year }}"> Previous Year </a>
-	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_year }}"> Next Year </a>
+<div class="navigation-container">
+	<a class="nav-arrow arrow-prev" href="{% url 'cal:calendar' %}?{{ prev_year }}"> Предыдущий год </a>
+	<a class="nav-arrow arrow-next" href="{% url 'cal:calendar' %}?{{ next_year }}"> Следующий год </a>
 </div>
 {{ calendar }}
 

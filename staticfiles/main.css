@@ -64,3 +64,21 @@ h1, h2, h3, h4, h5, h6 {
 ul {
   margin: 0;
 }
+
+.btn-submit {
+  background: #069685;
+  -webkit-transition: background-color 800ms linear;
+  -moz-transition: background-color 800ms linear;
+  -o-transition: background-color 800ms linear;
+  -ms-transition: background-color 800ms linear;
+  transition: background-color 800ms linear;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+button:hover, .btn:hover {
+  background: #37B28D;
+}

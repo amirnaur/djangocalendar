@@ -16,7 +16,7 @@ header .views-container {
 }
 header #config svg {
   position: relative;
-  z-index: 500;
+  z-index: 100;
 }
 header #config .config-modal-form {
   min-width: 320px;
@@ -25,7 +25,7 @@ header #config .config-modal-form {
   transition-duration: 0.8s;
   -webkit-transition-duration: 0.8s;
   position: absolute;
-  z-index: 400;
+  z-index: 50;
   right: 20px;
   top: 20px;
   background: #FFFFFF;
@@ -39,12 +39,7 @@ header #config .config-modal-form form.profile_form {
   display: flex;
   flex-direction: column;
 }
-header #config .config-modal-form form.profile_form button[type=submit] {
-  cursor: pointer;
-  background: linear-gradient(180deg, #069685 0%, #069685 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
+header #config .config-modal-form form.profile_form button.btn-submit {
   margin-top: 30px;
 }
 header #config svg.active ~ .config-modal-form {
