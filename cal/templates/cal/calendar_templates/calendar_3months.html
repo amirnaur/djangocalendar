@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 <div class="navigation-container">
-	<a class="nav-arrow arrow-prev" href="{% url 'cal:calendar_3months' %}?{{ prev_month }}"> Следующий месяц </a>
-	<a class="nav-arrow arrow-next" href="{% url 'cal:calendar_3months' %}?{{ next_month }}"> Предыдущий месяц </a>
+	<a class="nav-arrow arrow-prev" href="{% url 'cal:calendar_3months' %}?{{ prev_month }}">  Предыдущий месяц </a>
+	<a class="nav-arrow arrow-next" href="{% url 'cal:calendar_3months' %}?{{ next_month }}"> Следующий месяц </a>
 </div>
 
 {{ calendar }}
