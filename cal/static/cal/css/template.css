@@ -138,6 +138,24 @@ a {
   padding: 30px;
 }
 
+.modal-body {
+  position: unset;
+  overflow-y: auto;
+  max-height: 350px;
+}
+.modal-body::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-body::-webkit-scrollbar-track {
+  width: 10px;
+  border-radius: 16px;
+  background: #E9E3E3;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: #069685;
+  border-radius: 17px;
+}
+
 .modal-title {
   color: #ffffff;
 }
@@ -163,13 +181,17 @@ a {
   border-bottom-color: #80bdff;
   box-shadow: none;
 }
+.title-icon-container #icons-select ul.dd-options {
+  top: 50%;
+  left: 75%;
+}
+.title-icon-container #colors-select ul.dd-options {
+  top: 50%;
+  left: 95%;
+}
 .title-icon-container .dd-container {
   display: flex;
   align-items: center;
-}
-.title-icon-container .dd-container ul.dd-options {
-  top: 50px;
-  left: 50px;
 }
 .title-icon-container .dd-options {
   display: flex;

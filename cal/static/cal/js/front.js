@@ -370,9 +370,9 @@ function dayEvents(date_data) {
 
         ${day_events_render}
 
-        <div class="modal-footer">
+    </div>
+    <div class="modal-footer">
             <button type="button" class="btn btn-submit" onclick="overlay_day_events.close(); newEvent('${date_data.id}');">Новое событие</button>
-        </div>
     </div>
 `
 //            $('#icons-select').ddslick({
