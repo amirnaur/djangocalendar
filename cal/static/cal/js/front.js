@@ -89,8 +89,9 @@ function getData() {
 //    
 //}
 
-function icon_render(data, id){
+function icon_render(data, id, color_id){
     $(`#form-event-edit-${id} .title-icon-container`).append(data.inline_svg)
+    $(`#form-event-edit-${id} .title-icon-container`).find('svg path').css({fill: '#'+colors[color_id].color, 'fill-opacity': 1})
 }
 function buildList() {
     //var wrapper = document.getElementById('list-wrapper')
@@ -201,6 +202,7 @@ function newEvent(date) {
         ${new_event_render}
     <div class="modal-footer">
         <input id="submit" class="btn btn-submit" type="submit" value="Сохранить">
+        <i class="arrow"></i>
     </div>
 
     </form>
@@ -333,7 +335,7 @@ function dayEvents(date_data) {
 //                        },
                         success: function (response) {
                             // console.log(response.icon)
-                            icon_render(response, events[i].id)
+                            icon_render(response, events[i].id, events[i].event_color-1)
                             
                         }
                     })
@@ -341,15 +343,13 @@ function dayEvents(date_data) {
                     day_events_render += `
                 <form id="form-event-edit-${events[i].id}">
                     <div class="event-container">
-                        <label for="event-title" class="col-form-label">Название:</label>
-                        <button type="button" class="close" data-dismiss="modal" onclick="deleteEvent(${events[i].id})" aria-label="Close">
+                        <button type="button" class="close" onclick="deleteEvent(${events[i].id})">
                         <span aria-hidden="true">×</span>
                     </button>
                         <div class="title-icon-container">
                             <input type="text" name="title" data-id="${events[i].id}" onblur="editEvent(${events[i].id});" id="event-title" class="form-control event-title" value="${events[i].title}">
                         </div>
-                        <label for="event-desc" class="col-form-label">Описание:</label>
-                        <input type="text" data-id="${events[i].id}" onblur="editEvent(${events[i].id});" id="event-desc" class="form-control event-desc" name="description" value="${events[i].description}">
+                        <input type="text" data-id="${events[i].id}" onblur="editEvent(${events[i].id});" placeholder="Введите описание.." id="event-desc" class="form-control event-desc" name="description" value="${events[i].description}">
                         <input type="hidden" name="date_time" data-id="${events[i].id}" value="${events[i].date_time}">
                         <input type="hidden" name="icon" data-id="${events[i].id}" value="${events[i].icon}">
                         <input type="hidden" name="event_color" data-id="${events[i].id}" value="${events[i].event_color}">

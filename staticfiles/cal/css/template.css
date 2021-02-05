@@ -138,22 +138,23 @@ a {
   padding: 30px;
 }
 
+.overlay_content {
+  width: 35%;
+}
+
 .modal-body {
   position: unset;
   overflow-y: auto;
   max-height: 350px;
 }
 .modal-body::-webkit-scrollbar {
-  width: 10px;
-}
-.modal-body::-webkit-scrollbar-track {
-  width: 10px;
-  border-radius: 16px;
-  background: #E9E3E3;
+  width: 4px;
 }
 .modal-body::-webkit-scrollbar-thumb {
   background: #069685;
-  border-radius: 17px;
+  width: 4px;
+  opacity: 0.5;
+  border-radius: 7px;
 }
 
 .modal-title {
@@ -166,11 +167,13 @@ a {
 }
 
 .event-title {
+  font-weight: 500;
   border: none;
 }
 
 .title-icon-container {
   display: flex;
+  justify-content: space-between;
 }
 .title-icon-container .event-input {
   border: none;
@@ -180,6 +183,9 @@ a {
 .title-icon-container .event-input:focus {
   border-bottom-color: #80bdff;
   box-shadow: none;
+}
+.title-icon-container #icons-select {
+  margin-right: 20px;
 }
 .title-icon-container #icons-select ul.dd-options {
   top: 50%;
@@ -193,6 +199,25 @@ a {
   display: flex;
   align-items: center;
 }
+.title-icon-container .dd-container .dd-select {
+  background: #FAFBFB;
+  box-shadow: inset 0px 2px 5px rgba(24, 68, 74, 0.1);
+  border-radius: 5px;
+}
+.title-icon-container .dd-container .dd-pointer {
+  border: solid #069685;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.title-icon-container .dd-container .dd-pointer-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.title-icon-container .dd-container .dd-pointer-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
 .title-icon-container .dd-options {
   display: flex;
   flex-wrap: wrap;
@@ -203,10 +228,11 @@ a {
 
 #event-desc {
   width: 100%;
-  box-shadow: inset 0px 2px 5px rgba(24, 68, 74, 0.1);
+  font-weight: 400;
   border: none;
   -webkit-appearance: none;
   border-radius: 5px;
+  color: #828282;
 }
 
 .modal-footer {
@@ -232,7 +258,7 @@ a {
   position: relative;
   width: 25px;
   height: 25px;
-  margin: 10px;
+  margin: 5px;
   cursor: pointer;
 }
 
